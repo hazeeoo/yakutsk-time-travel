@@ -62,13 +62,13 @@ export function Hero() {
           Ваш браузер не поддерживает видео.
         </video>
         {/* Multi-layer overlay for depth */}
-        <div className="absolute inset-0 bg-[#030303]/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/20 via-transparent to-[#030303]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030303]/30 via-transparent to-[#030303]/30" />
+        <div className="absolute inset-0 bg-[#030303]/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/30 via-transparent to-[#030303]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030303]/40 via-transparent to-[#030303]/40" />
       </motion.div>
 
       {/* Frosty vignette edges */}
-      <div className="absolute inset-0 z-[1] pointer-events-none shadow-[inset_0_0_200px_rgba(3,3,3,0.9)]" />
+      <div className="absolute inset-0 z-[1] pointer-events-none shadow-[inset_0_0_250px_rgba(3,3,3,0.95)]" />
 
       {/* Horizontal frost lines */}
       <div className="absolute top-[15%] left-0 right-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#F8FAFC]/[0.03] to-transparent" />
@@ -81,7 +81,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.5em] text-[#F8FAFC]/40 md:text-xs md:tracking-[0.6em]">
+          <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.5em] text-[#F8FAFC]/60 drop-shadow-lg md:text-xs md:tracking-[0.6em]">
             Город, где начинается Россия
           </p>
         </motion.div>
@@ -91,7 +91,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="font-serif text-7xl font-bold tracking-tight text-[#F8FAFC] md:text-[8rem] lg:text-[11rem]">
+          <h1 className="font-serif text-7xl font-bold tracking-tight text-[#F8FAFC] drop-shadow-2xl md:text-[8rem] lg:text-[11rem]">
             <span className="text-balance">Якутск</span>
           </h1>
         </motion.div>
@@ -109,7 +109,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.2, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="font-serif text-xl font-light tracking-[0.3em] text-primary/80 md:text-2xl lg:text-3xl">
+          <p className="font-serif text-xl font-light tracking-[0.3em] text-primary drop-shadow-lg md:text-2xl lg:text-3xl">
             Сквозь века
           </p>
         </motion.div>
@@ -119,33 +119,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mx-auto mt-8 max-w-md text-sm leading-relaxed text-[#F8FAFC]/30 md:text-base">
+          <p className="mx-auto mt-8 max-w-md text-sm leading-relaxed text-[#F8FAFC]/50 drop-shadow-md md:text-base">
             Путешествие через 400 лет истории от острога до IT-столицы
           </p>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1.2 }}
-          className="mt-24"
-        >
-          <motion.a
-            href="#era-1632"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="group inline-flex flex-col items-center gap-4 text-[#F8FAFC]/20 transition-colors hover:text-primary/60"
-            aria-label="Прокрутить вниз"
-          >
-            <span className="text-[9px] uppercase tracking-[0.5em] transition-colors group-hover:text-primary/60">
-              Начать путешествие
-            </span>
-            <div className="relative flex flex-col items-center gap-1">
-              <div className="h-8 w-px bg-gradient-to-b from-transparent to-current" />
-              <ChevronDown className="h-3.5 w-3.5" />
-            </div>
-          </motion.a>
         </motion.div>
       </motion.div>
 
