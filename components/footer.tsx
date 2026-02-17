@@ -16,7 +16,7 @@ export function Footer() {
 
   const stats = [
     { value: "394", label: "года истории" },
-    { value: "\u201150\u00B0C", label: "рекорд холода" },
+    { value: "\u201164.4\u00B0C", label: "рекорд холода" },
     { value: "380K+", label: "жителей" },
   ]
 
