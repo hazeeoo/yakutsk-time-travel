@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Якутск: Сквозь века',
-  description: 'Путешествие через 400 лет истории от острога до IT-столицы. Интерактивный лендинг об истории Якутска с викториной.',
+  title: 'Yakutsk: Time Travel | Through the Ages',
+  description: 'Interactive journey through 400 years of Yakutsk history, from a wooden fort to IT capital of the North.',
 }
 
 export const viewport: Viewport = {

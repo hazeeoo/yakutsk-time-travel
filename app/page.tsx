@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useCallback, useEffect } from "react"
-import { AnimatePresence, motion } from "framer-motion"
 import { Hero } from "@/components/hero"
 import { TimelineNav } from "@/components/timeline-nav"
 import { EraSection } from "@/components/era-section"
@@ -17,6 +16,10 @@ import { timelineData } from "@/lib/timeline-data"
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"timeline" | "quiz">("timeline")
 
+  useEffect(() => {
+    document.title = "\u042F\u043A\u0443\u0442\u0441\u043A: \u0421\u043A\u0432\u043E\u0437\u044C \u0432\u0435\u043A\u0430"
+  }, [])
+
   const handleTabChange = useCallback((tab: "timeline" | "quiz") => {
     setActiveTab(tab)
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
@@ -27,53 +30,26 @@ export default function Home() {
       <LoadingScreen />
       <TopNav activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <AnimatePresence mode="wait">
-        {activeTab === "timeline" ? (
-          <motion.div
-            key="timeline"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <SmoothScroll>
-              <main className="noise-overlay relative min-h-screen bg-[#030303]">
-                {/* Atmospheric layers */}
-                <ParticleField />
-                <AmbientBackground />
-
-                {/* Timeline navigation */}
-                <TimelineNav />
-
-                {/* Hero section */}
-                <Hero />
-
-                {/* Era sections */}
-                <div className="relative z-[2]">
-                  {timelineData.map((era, index) => (
-                    <EraSection key={era.id} era={era} index={index} />
-                  ))}
-                </div>
-
-                {/* Footer */}
-                <Footer />
-              </main>
-            </SmoothScroll>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="quiz"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <main className="noise-overlay relative min-h-screen bg-[#030303]">
-              <Quiz />
-            </main>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {activeTab === "timeline" ? (
+        <SmoothScroll>
+          <main className="noise-overlay relative min-h-screen bg-[#030303]">
+            <ParticleField />
+            <AmbientBackground />
+            <TimelineNav />
+            <Hero />
+            <div className="relative z-[2]">
+              {timelineData.map((era, index) => (
+                <EraSection key={era.id} era={era} index={index} />
+              ))}
+            </div>
+            <Footer />
+          </main>
+        </SmoothScroll>
+      ) : (
+        <main className="noise-overlay relative min-h-screen bg-[#030303]">
+          <Quiz />
+        </main>
+      )}
     </>
   )
 }
