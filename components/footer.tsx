@@ -103,6 +103,9 @@ export function Footer() {
           <span className="text-[9px] tracking-[0.4em] text-[#F8FAFC]/15">
             ЯКУТСК : СКВОЗЬ ВЕКА
           </span>
+          <span className="mt-2 text-[9px] tracking-[0.3em] text-[#F8FAFC]/10">
+            &copy; Haze 2026
+          </span>
         </motion.div>
       </div>
     </footer>
