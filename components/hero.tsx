@@ -120,7 +120,7 @@ export function Hero() {
           transition={{ duration: 1.2, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="mx-auto mt-8 max-w-md text-sm leading-relaxed text-[#F8FAFC]/50 drop-shadow-md md:text-base">
-            Путешествие через 400 лет истории от острога до IT-столицы
+            Путешествие через 394 года истории от острога до IT-столицы
           </p>
         </motion.div>
       </motion.div>

@@ -15,9 +15,9 @@ export function Footer() {
   const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
 
   const stats = [
-    { value: "392", label: "года истории" },
-    { value: "\u201150\u00B0C", label: "рекорд холода" },
-    { value: "350K+", label: "жителей" },
+    { value: "394", label: "года истории" },
+    { value: "\u201164.4\u00B0C", label: "рекорд холода" },
+    { value: "380K+", label: "жителей" },
   ]
 
   return (
@@ -35,8 +35,36 @@ export function Footer() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
+          {/* Scroll to top */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="group mx-auto mb-8 flex flex-col items-center gap-2 transition-all duration-500"
+            aria-label="Вернуться к началу"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#F8FAFC]/[0.06] bg-[#F8FAFC]/[0.02] transition-all duration-500 group-hover:border-primary/30 group-hover:bg-primary/[0.06]">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                className="text-[#F8FAFC]/25 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:text-primary"
+              >
+                <path
+                  d="M7 12V2M7 2L2.5 6.5M7 2L11.5 6.5"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <span className="text-[8px] uppercase tracking-[0.4em] text-[#F8FAFC]/15 transition-colors duration-500 group-hover:text-[#F8FAFC]/30">
+              наверх
+            </span>
+          </button>
+
           <p className="text-[10px] font-semibold uppercase tracking-[0.6em] text-primary/60 md:text-xs">
-            400 лет истории
+            394 года истории
           </p>
         </motion.div>
 
@@ -102,6 +130,9 @@ export function Footer() {
           </div>
           <span className="text-[9px] tracking-[0.4em] text-[#F8FAFC]/15">
             ЯКУТСК : СКВОЗЬ ВЕКА
+          </span>
+          <span className="mt-2 text-[9px] tracking-[0.3em] text-[#F8FAFC]/10">
+            &copy; Haze 2026
           </span>
         </motion.div>
       </div>
