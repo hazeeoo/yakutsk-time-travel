@@ -124,7 +124,7 @@ export function Quiz() {
                 {[
                   { value: String(quizData.length), label: "вопросов в банке" },
                   { value: "7", label: "эпох истории" },
-                  { value: "400", label: "лет" },
+                  { value: "394", label: "года" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center">
                     <p className="font-serif text-xl font-bold text-primary/60 md:text-2xl">{stat.value}</p>
