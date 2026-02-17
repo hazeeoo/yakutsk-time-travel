@@ -35,6 +35,12 @@ export function EraSection({ era, index }: EraSectionProps) {
   const imageY = useTransform(scrollYProgress, [0, 1], [80, -80])
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1])
   const sectionOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0])
+  
+  // Additional parallax effects
+  const contentY = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const glowY = useTransform(scrollYProgress, [0, 1], [-100, 100])
+  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8])
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   // Mouse-follow tilt on the image
   const mouseX = useMotionValue(0)
@@ -60,14 +66,25 @@ export function EraSection({ era, index }: EraSectionProps) {
       className="relative py-24 md:py-36 lg:py-44"
       style={{ opacity: sectionOpacity }}
     >
-      {/* Per-section ambient glow */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div
+      {/* Per-section ambient glow with parallax */}
+      <motion.div 
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        style={{ opacity: glowOpacity }}
+      >
+        <motion.div
           className={`absolute h-[500px] w-[500px] rounded-full bg-primary/[0.015] blur-[150px] ${
             isEven ? "-left-48 top-1/4" : "-right-48 top-1/3"
           }`}
+          style={{ y: glowY, scale: glowScale }}
         />
-      </div>
+        {/* Secondary glow on opposite side */}
+        <motion.div
+          className={`absolute h-[400px] w-[400px] rounded-full bg-primary/[0.01] blur-[120px] ${
+            isEven ? "-right-32 bottom-1/4" : "-left-32 bottom-1/3"
+          }`}
+          style={{ y: useTransform(glowY, (v) => -v * 0.5) }}
+        />
+      </motion.div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div
@@ -160,7 +177,11 @@ export function EraSection({ era, index }: EraSectionProps) {
           </div>
 
           {/* Text content */}
-          <div className="w-full lg:w-[40%]" ref={contentRef}>
+          <motion.div 
+            className="w-full lg:w-[40%]" 
+            ref={contentRef}
+            style={{ y: contentY }}
+          >
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -287,7 +308,7 @@ export function EraSection({ era, index }: EraSectionProps) {
                 ))}
               </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
 
