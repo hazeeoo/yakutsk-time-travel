@@ -1,6 +1,5 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
@@ -12,35 +11,89 @@ interface TopNavProps {
 export function TopNav({ activeTab, onTabChange }: TopNavProps) {
   const [scrolled, setScrolled] = useState(false)
   const [visible, setVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
+    const topShowY = 120
+    const intentThreshold = 8
+    let touchY: number | null = null
+    let lastIntent: "up" | "down" | null = null
+
     const handleScroll = () => {
       const currentY = window.scrollY
       setScrolled(currentY > 40)
 
-      // Hide on scroll down, show on scroll up
-      if (currentY > lastScrollY && currentY > 200) {
-        setVisible(false)
-      } else {
+      if (currentY <= 4) {
+        setVisible(true)
+        lastIntent = null
+      } else if (currentY <= topShowY && lastIntent !== "down") {
         setVisible(true)
       }
-      setLastScrollY(currentY)
+    }
+
+    const handleWheel = (event: WheelEvent) => {
+      const currentY = window.scrollY
+
+      if (Math.abs(event.deltaY) < intentThreshold) return
+
+      lastIntent = event.deltaY > 0 ? "down" : "up"
+      setVisible(lastIntent === "up")
+    }
+
+    const handleTouchStart = (event: TouchEvent) => {
+      touchY = event.touches[0]?.clientY ?? null
+    }
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (touchY === null) return
+
+      const currentY = event.touches[0]?.clientY ?? touchY
+      const delta = touchY - currentY
+      touchY = currentY
+
+      if (Math.abs(delta) < intentThreshold) return
+
+      lastIntent = delta > 0 ? "down" : "up"
+      setVisible(lastIntent === "up")
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+        lastIntent = "down"
+        setVisible(false)
+      }
+
+      if (["ArrowUp", "PageUp", "Home"].includes(event.key)) {
+        lastIntent = "up"
+        setVisible(true)
+      }
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
+    window.addEventListener("wheel", handleWheel, { passive: true })
+    window.addEventListener("touchstart", handleTouchStart, { passive: true })
+    window.addEventListener("touchmove", handleTouchMove, { passive: true })
+    window.addEventListener("keydown", handleKeyDown)
+    handleScroll()
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("wheel", handleWheel)
+      window.removeEventListener("touchstart", handleTouchStart)
+      window.removeEventListener("touchmove", handleTouchMove)
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [])
 
   return (
-    <motion.header
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: visible ? 0 : -80, opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    <header
       className={cn(
-        "fixed left-0 right-0 top-0 z-[60] flex items-center justify-center transition-all duration-500",
+        "fixed left-0 right-0 top-0 z-[60] flex items-center justify-center transition-[opacity,padding,transform] duration-300 ease-out",
         scrolled ? "py-3" : "py-5"
       )}
+      style={{
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? "auto" : "none",
+        transform: visible ? "translate3d(0, 0, 0)" : "translate3d(0, -5rem, 0)",
+      }}
     >
       <nav
         className={cn(
@@ -64,17 +117,13 @@ export function TopNav({ activeTab, onTabChange }: TopNavProps) {
               )}
             >
               {isActive && (
-                <motion.div
-                  layoutId="tab-active-bg"
-                  className="absolute inset-0 border border-primary/20 bg-primary/[0.08]"
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                />
+                <div className="absolute inset-0 border border-primary/20 bg-primary/[0.08]" />
               )}
               <span className="relative z-10">{label}</span>
             </button>
           )
         })}
       </nav>
-    </motion.header>
+    </header>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { timelineData } from "@/lib/timeline-data"
 import { cn } from "@/lib/utils"
 
@@ -12,7 +12,7 @@ export function TimelineNav() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
-      setIsVisible(scrollY > window.innerHeight * 0.6)
+      setIsVisible(scrollY > window.innerHeight * 1.05)
 
       const sections = ["hero", ...timelineData.map((d) => d.id)]
       let current = "hero"
@@ -38,16 +38,15 @@ export function TimelineNav() {
   const progressPercent = activeIndex >= 0 ? (activeIndex / (timelineData.length - 1)) * 100 : 0
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.nav
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 40 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed right-6 top-1/2 z-50 hidden -translate-y-1/2 lg:flex xl:right-8"
-          aria-label="Навигация по таймлайну"
-        >
+    <motion.nav
+      initial={false}
+      animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 10 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="fixed right-6 top-1/2 z-50 hidden -translate-y-1/2 lg:flex xl:right-8"
+      style={{ pointerEvents: isVisible ? "auto" : "none" }}
+      aria-hidden={!isVisible}
+      aria-label="Навигация по таймлайну"
+    >
           <div className="relative flex flex-col items-end gap-8">
             {/* Vertical background track */}
             <div className="absolute right-[5px] top-0 bottom-0 w-px bg-[#F8FAFC]/[0.04]" />
@@ -56,7 +55,7 @@ export function TimelineNav() {
             <motion.div
               className="absolute right-[5px] top-0 w-px origin-top bg-primary/30"
               animate={{ height: `${progressPercent}%` }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             />
 
             {timelineData.map((era, index) => {
@@ -102,16 +101,18 @@ export function TimelineNav() {
                   <div className="relative z-10 flex items-center justify-center">
                     {isActive && (
                       <motion.div
-                        layoutId="nav-active-ring"
+                        initial={{ opacity: 0, scale: 0.7 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         className="absolute h-7 w-7 rounded-full border border-primary/20"
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                       />
                     )}
                     {isActive && (
                       <motion.div
-                        layoutId="nav-active-glow"
+                        initial={{ opacity: 0, scale: 0.7 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         className="absolute h-5 w-5 rounded-full bg-primary/10"
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.2 }}
                       />
                     )}
                     <span
@@ -129,8 +130,6 @@ export function TimelineNav() {
               )
             })}
           </div>
-        </motion.nav>
-      )}
-    </AnimatePresence>
+    </motion.nav>
   )
 }

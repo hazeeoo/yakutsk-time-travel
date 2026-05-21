@@ -11,6 +11,8 @@ import { LoadingScreen } from "@/components/loading-screen"
 import { AmbientBackground } from "@/components/ambient-bg"
 import { TopNav } from "@/components/top-nav"
 import { Quiz } from "@/components/quiz"
+import { SourcesSection } from "@/components/sources-section"
+import { ScrollTopButton } from "@/components/scroll-top-button"
 import { timelineData } from "@/lib/timeline-data"
 
 export default function Home() {
@@ -42,7 +44,9 @@ export default function Home() {
                 <EraSection key={era.id} era={era} index={index} />
               ))}
             </div>
+            <SourcesSection onQuizClick={() => handleTabChange("quiz")} />
             <Footer />
+            <ScrollTopButton />
           </main>
         </SmoothScroll>
       ) : (

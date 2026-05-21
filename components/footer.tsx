@@ -17,7 +17,7 @@ export function Footer() {
   const stats = [
     { value: "394", label: "года истории" },
     { value: "\u201164.4\u00B0C", label: "рекорд холода" },
-    { value: "380K+", label: "жителей" },
+    { value: "390K+", label: "жителей ГО" },
   ]
 
   return (
@@ -36,8 +36,8 @@ export function Footer() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Scroll to top */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          <a
+            href="#hero"
             className="group mx-auto mb-8 flex flex-col items-center gap-2 transition-all duration-500"
             aria-label="Вернуться к началу"
           >
@@ -61,7 +61,7 @@ export function Footer() {
             <span className="text-[8px] uppercase tracking-[0.4em] text-[#F8FAFC]/15 transition-colors duration-500 group-hover:text-[#F8FAFC]/30">
               наверх
             </span>
-          </button>
+          </a>
 
           <p className="text-[10px] font-semibold uppercase tracking-[0.6em] text-primary/60 md:text-xs">
             394 года истории

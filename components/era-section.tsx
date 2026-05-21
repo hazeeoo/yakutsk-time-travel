@@ -141,7 +141,7 @@ export function EraSection({ era, index }: EraSectionProps) {
 
               {/* Image switcher */}
               {era.image2 && (
-                <div className="absolute bottom-4 right-4 z-20 flex gap-2">
+                <div className="absolute top-4 left-4 z-20 flex gap-2">
                   {[false, true].map((isSecond, i) => (
                     <button
                       key={i}
@@ -233,20 +233,20 @@ export function EraSection({ era, index }: EraSectionProps) {
                 transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 className="mt-8"
               >
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
                   {era.stats.map((stat, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={isInView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.6, delay: 0.8 + i * 0.1 }}
-                      className="relative overflow-hidden border border-[#F8FAFC]/[0.06] bg-[#F8FAFC]/[0.02] p-4 text-center"
+                      className="relative flex min-h-[72px] items-center justify-between gap-4 overflow-hidden border border-[#F8FAFC]/[0.06] bg-[#F8FAFC]/[0.02] p-4 text-left sm:block sm:min-h-[118px] sm:text-center"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent" />
-                      <p className="relative font-serif text-2xl font-bold text-primary md:text-3xl">
+                      <p className="relative flex-shrink-0 font-serif text-3xl font-bold leading-none text-primary sm:text-2xl md:text-3xl">
                         {stat.value}
                       </p>
-                      <p className="relative mt-1 text-[9px] uppercase tracking-wider text-[#F8FAFC]/40 md:text-[10px]">
+                      <p className="relative max-w-[55%] text-right text-[10px] font-semibold uppercase leading-snug tracking-[0.12em] text-[#F8FAFC]/45 sm:mt-2 sm:max-w-none sm:text-center sm:text-[9px] sm:tracking-wider md:text-[10px]">
                         {stat.label}
                       </p>
                     </motion.div>

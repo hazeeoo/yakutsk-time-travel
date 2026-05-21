@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Yakutsk: Time Travel | Through the Ages',
-  description: 'Interactive journey through 400 years of Yakutsk history, from a wooden fort to IT capital of the North.',
+  title: 'Якутск: сквозь века',
+  description: 'Интерактивное путешествие по истории Якутска от Ленского острога до современной IT-среды.',
 }
 
 export const viewport: Viewport = {
@@ -31,6 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <link rel="preload" href="/images/intro-compressed.mp4" as="video" type="video/mp4" />
+      </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
   )

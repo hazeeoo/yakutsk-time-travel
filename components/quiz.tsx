@@ -88,7 +88,7 @@ export function Quiz() {
         <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-primary/[0.015] blur-[150px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-3xl px-6 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 py-20 md:py-28">
         <AnimatePresence mode="wait">
           {/* INTRO */}
           {gameState === "intro" && (
@@ -104,13 +104,13 @@ export function Quiz() {
                 Проверь свои знания
               </p>
 
-              <h1 className="mt-6 font-serif text-4xl font-bold text-[#F8FAFC] md:text-5xl lg:text-6xl">
+              <h1 className="mt-6 font-serif text-5xl font-bold text-[#F8FAFC] md:text-6xl lg:text-7xl">
                 <span className="text-balance">Викторина по Якутску</span>
               </h1>
 
               <YakutOrnament className="my-8" />
 
-              <p className="mx-auto max-w-md text-sm leading-relaxed text-[#F8FAFC]/40 md:text-base">
+              <p className="mx-auto max-w-xl text-base leading-relaxed text-[#F8FAFC]/45 md:text-lg">
                 {QUESTIONS_PER_QUIZ} вопросов по истории города. Каждый раз вопросы выбираются случайно из
                 банка. Узнайте, насколько хорошо вы запомнили путешествие сквозь века.
               </p>
@@ -119,7 +119,7 @@ export function Quiz() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={startQuiz}
-                className="mt-10 flex items-center gap-3 border border-primary/30 bg-primary/[0.06] px-8 py-4 text-sm font-medium tracking-wider text-primary transition-colors duration-300 hover:border-primary/50 hover:bg-primary/[0.12]"
+                className="mt-10 flex items-center gap-3 border border-primary/30 bg-primary/[0.06] px-8 py-4 text-base font-medium tracking-wider text-primary transition-colors duration-300 hover:border-primary/50 hover:bg-primary/[0.12]"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-primary">
                   <path d="M12 2L16 8L12 14L8 8Z" stroke="currentColor" strokeWidth="1.5" />
@@ -173,7 +173,7 @@ export function Quiz() {
               </div>
 
               {/* Question */}
-              <h2 className="font-serif text-2xl font-bold leading-snug text-[#F8FAFC] md:text-3xl">
+              <h2 className="font-serif text-3xl font-bold leading-snug text-[#F8FAFC] md:text-4xl">
                 <span className="text-balance">{currentQuestion.question}</span>
               </h2>
 
@@ -222,7 +222,7 @@ export function Quiz() {
 
                       <span
                         className={cn(
-                          "text-sm md:text-base transition-colors duration-300",
+                          "text-base md:text-lg transition-colors duration-300",
                           variant === "default" && "text-[#F8FAFC]/50 group-hover:text-[#F8FAFC]/80",
                           variant === "correct" && "text-emerald-300",
                           variant === "wrong" && "text-red-300"
@@ -281,7 +281,7 @@ export function Quiz() {
                     className="overflow-hidden"
                   >
                     <div className="mt-6 border-l-2 border-primary/20 bg-[#F8FAFC]/[0.015] py-4 pl-5 pr-5">
-                      <p className="text-xs leading-relaxed text-[#F8FAFC]/40 md:text-sm">
+                      <p className="text-sm leading-relaxed text-[#F8FAFC]/45 md:text-base">
                         {currentQuestion.explanation}
                       </p>
                     </div>
@@ -293,9 +293,9 @@ export function Quiz() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleNext}
-                      className="mt-6 flex w-full items-center justify-center gap-2 border border-[#F8FAFC]/[0.08] bg-[#F8FAFC]/[0.03] py-3.5 text-sm font-medium tracking-wider text-[#F8FAFC]/60 transition-colors duration-300 hover:border-primary/30 hover:text-primary"
+                      className="mt-6 flex w-full items-center justify-center gap-2 border border-[#F8FAFC]/[0.08] bg-[#F8FAFC]/[0.03] py-4 text-base font-medium tracking-wider text-[#F8FAFC]/60 transition-colors duration-300 hover:border-primary/30 hover:text-primary"
                     >
-                      {currentIndex + 1 >= questions.length ? "РЕЗУЛЬТАТЫ" : "ДАЛЕЕ"}
+                        {currentIndex + 1 >= questions.length ? "РЕЗУЛЬТАТЫ" : "ДАЛЕЕ"}
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path
                           d="M5 12h14M12 5l7 7-7 7"
@@ -326,7 +326,7 @@ export function Quiz() {
                 Результат
               </p>
 
-              <h2 className="mt-6 font-serif text-4xl font-bold text-[#F8FAFC] md:text-5xl">
+              <h2 className="mt-6 font-serif text-5xl font-bold text-[#F8FAFC] md:text-6xl">
                 {grade.title}
               </h2>
 
@@ -375,7 +375,7 @@ export function Quiz() {
                 </div>
               </div>
 
-              <p className="mt-6 max-w-sm text-sm leading-relaxed text-[#F8FAFC]/40">{grade.text}</p>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-[#F8FAFC]/45 md:text-lg">{grade.text}</p>
 
               {/* Answer summary */}
               <div className="mt-10 flex flex-wrap items-center justify-center gap-2">

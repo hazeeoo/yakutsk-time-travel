@@ -9,6 +9,9 @@ out/
 build/
 dist/
 
+# Vercel
+.vercel/
+
 # Environment
 .env
 .env*.local
@@ -38,3 +41,5 @@ coverage/
 
 # Misc
 *.log
+tsconfig.tsbuildinfo
+public/images/hqdefault.jpg
