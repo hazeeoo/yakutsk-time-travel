@@ -268,10 +268,10 @@ export function Hero() {
             >
               <div className="mx-auto mt-8 h-px w-[min(18rem,70vw)] bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
               <div className="mx-auto mt-4 flex w-fit items-end justify-center gap-3 px-2 md:mt-9">
-                <span className="relative font-serif text-4xl font-bold leading-[0.9] text-transparent drop-shadow-[0_0_18px_rgba(56,189,248,0.12)] [-webkit-text-stroke:1px_rgba(248,250,252,0.58)] md:text-5xl">
+                <span className="relative font-serif text-4xl font-bold leading-[0.9] text-[#F8FAFC] drop-shadow-[0_0_26px_rgba(56,189,248,0.18)] [-webkit-text-stroke:0.8px_rgba(248,250,252,0.72)] md:text-5xl">
                   394
                 </span>
-                <span className="relative mb-1 text-left text-[9px] font-semibold uppercase leading-[1.4] tracking-[0.22em] text-primary/60 md:text-[10px]">
+                <span className="relative mb-1 text-left text-[10px] font-semibold uppercase leading-[1.3] tracking-[0.3em] text-[#F8FAFC]/65 md:text-[11px]">
                   года
                   <br />
                   истории
@@ -284,7 +284,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 2.3 }}
             >
-              <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-[#F8FAFC]/50 drop-shadow-md md:text-base">
+              <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-[#F8FAFC]/60 drop-shadow-[0_0_16px_rgba(56,189,248,0.08)] md:text-base">
                 Путешествие от острога XVII века до IT-столицы
               </p>
             </motion.div>
